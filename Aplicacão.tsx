@@ -58,8 +58,82 @@
         console.log(`Seu endereço é: ${this.endereco}`);
         console.log(`Seu numero de telefone é: ${this.celular}`);
     }
-}
-    const minhaPessoa = new Pessoa(" ", 0, " ", " ", " ");
 
-    minhaPessoa.preencherinformacao();
-    minhaPessoa.exibirinformacoes();
+}
+
+ class Aluno extends Pessoa{
+    matricula: string;
+    periodo: number
+
+    constructor(nomeCompleto: string, idade: number, cpf: string, endereco: string, celular: string, matricula: string, periodo: number){
+        super(nomeCompleto, idade, cpf, endereco, celular);
+        this.matricula = matricula;
+        this.periodo = periodo;
+    }
+
+    preencherinformacao(){
+        super.preencherinformacao();
+
+        const matricula = prompt("Qual a sua matricula? ");
+        if(matricula){
+            this.matricula = matricula;
+        } else {
+            console.log(" Erro, por favor ");
+        }
+
+        const periodo = Number(prompt("Qual o seu periodo? "));
+        if(periodo){
+            this.periodo = periodo;
+        }
+
+    }
+    exibirinformacao(){
+        super.exibirinformacoes();
+
+        console.log(`Sua matricula: ${this.matricula}`);
+        console.log(`Seu periodo: ${this.periodo}`);
+
+    }
+}
+
+ class Professor extends Pessoa {
+        registro: string;
+
+        constructor(nomeCompleto: string, idade: number, cpf: string, endereco: string, celular: string, registro: string){
+            super(nomeCompleto, idade, cpf, endereco, celular);
+            this.registro = registro;
+
+        }
+
+        preencherinformacao(){
+            const registro = prompt("Qual o seu registro?");
+            if(registro){
+                this.registro = registro;
+            } else {
+                console.log("Erro, digite um registro valido!");
+            }
+        }
+
+        exibirinformacoes(){
+            
+            console.log(`Seu registro: ${this.registro}`);
+        }
+ }
+    const meuAluno = new Aluno(" ", 0, " ", " ", " ", " ", 0);
+    const meuProfessor = new Professor(" ", 0, " ", " ", " ", " ");
+
+    const escolha = prompt("Você é aluno ou professor? ");
+
+    if(escolha === "Aluno" || escolha === "aluno"){
+        //preencher informação do aluno
+        meuAluno.preencherinformacao();
+
+        //exibir informação do aluno
+        meuAluno.exibirinformacoes();
+    } else if(escolha === "Professor" || escolha === "professor"){
+        //preencher informação do professor
+        meuProfessor.preencherinformacao();
+
+        //exibir informação do professor
+        meuProfessor.exibirinformacoes();
+    }
